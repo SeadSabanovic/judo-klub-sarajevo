@@ -1,0 +1,241 @@
+@import url(typography.scss);
+/* CSS Custom Properties Definitions */
+:root {
+  --fontWeight-normal: 400;
+  --fontWeight-bold: 700;
+  --fontSize-root: 16px;
+  --lineHeight-none: 1;
+  --lineHeight-tight: 1.1;
+  --lineHeight-normal: 1.5;
+  --lineHeight-relaxed: 1.625;
+
+  --maxWidth-wrapper: 1440px;
+
+  --color-primary: #7a0014;
+  --color-text: #2e353f;
+  --color-text-light: #4f5969;
+  --color-heading: #1a202c;
+  --color-heading-black: black;
+  --color-accent: #d1dce5;
+
+  --nav-height: 70px;
+}
+
+::selection {
+  color: #fff;
+  background: var(--color-primary);
+}
+
+/* HTML elements */
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
+
+html {
+  line-height: var(--lineHeight-normal);
+  font-size: var(--fontSize-root);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: "Montserrat";
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+footer {
+  padding: var(--spacing-6) var(--spacing-0);
+}
+
+/* Global Styles */
+.global-wrapper {
+  margin: 0 auto;
+  max-width: var(--maxWidth-wrapper);
+  padding: calc(var(--nav-height) + 24px) 24px;
+}
+
+.navigation {
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  // background: #fff;
+
+  &__inner {
+    max-width: 1440px;
+    padding: 0 24px;
+    margin: 0 auto;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    height: 50px;
+  }
+
+  &__links {
+    display: flex;
+    gap: 8px;
+
+    a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #000;
+    }
+  }
+}
+
+.contact {
+  padding: calc(var(--nav-height) + 24px) 0;
+
+  &__title {
+    font-size: 3rem;
+    padding: 24px;
+    background-color: var(--color-primary);
+    color: #fff;
+  }
+
+  &__sections {
+    display: flex;
+    justify-content: center;
+
+    @media screen and (max-width: 860px) {
+      flex-direction: column;
+    }
+
+    &__section {
+      position: relative;
+      padding: 4rem 0;
+      flex: 1;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+
+      &__title {
+        margin-bottom: 8px;
+      }
+
+      &:hover {
+        img {
+          transform: scale(1.1);
+        }
+      }
+
+      &__icon {
+        color: #fff;
+        padding: 8px;
+        background-color: var(--color-primary);
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 2.5rem;
+      }
+
+      h5 {
+        margin: 0;
+      }
+
+      &__bg {
+        position: absolute;
+        z-index: -1;
+        opacity: 0.1;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        filter: grayscale(100%);
+        object-fit: cover;
+        transition: transform 0.2s;
+      }
+    }
+  }
+
+  &__map {
+    margin-top: 24px;
+    width: 100%;
+  }
+}
+
+/* CSS */
+.button {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  background-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  text-transform: uppercase;
+
+  &::after {
+    content: "";
+    background-color: var(--color-primary);
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 7px;
+    left: 7px;
+    transition: 0.2s;
+  }
+
+  &:hover::after {
+    top: 0px;
+    left: 0px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 13px 50px 13px;
+  }
+}
+
+.news-slider {
+  margin-bottom: calc(var(--nav-height) + 24px);
+
+  &__title {
+    background-color: var(--color-primary);
+    color: #fff;
+    font-size: 3rem;
+    padding: 24px;
+    margin-bottom: 24px;
+  }
+
+  &__item {
+    display: flex;
+
+    &__title {
+      padding: 24px;
+      background-color: #fff;
+      position: absolute;
+      z-index: 1;
+      top: 24px;
+      max-width: 300px;
+    }
+
+    &__thumb {
+      aspect-ratio: 2/1;
+      width: 100%;
+      filter: grayscale(80%);
+    }
+  }
+
+  &__swiper {
+    overflow: visible !important;
+  }
+}

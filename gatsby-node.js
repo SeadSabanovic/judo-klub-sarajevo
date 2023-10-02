@@ -22,9 +22,14 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       allMarkdownRemark(sort: { frontmatter: { date: ASC } }, limit: 1000) {
         nodes {
           id
+          frontmatter {
+            title
+            date(formatString: "MMMM DD, YYYY")
+          }
           fields {
             slug
           }
+          excerpt
         }
       }
     }
@@ -38,19 +43,20 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const allPosts = result.data.allMarkdownRemark.nodes
+  console.log(allPosts)
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
-
-  if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+  if (allPosts.length > 0) {
+    allPosts.forEach((post, index) => {
+      const previousPostId = index === 0 ? null : allPosts[index - 1].id
+      const nextPostId =
+        index === allPosts.length - 1 ? null : allPosts[index + 1].id
 
       createPage({
-        path: post.fields.slug,
+        path: "vijesti" + post.fields.slug,
         component: blogPost,
         context: {
           id: post.id,
@@ -60,6 +66,24 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       })
     })
   }
+
+  // Create a custom route for the "About" page
+  createPage({
+    path: "/o-nama", // Set your desired custom route here
+    component: require.resolve("./src/pages/about.js"), // Path to your "about" page component
+  })
+
+  // Create a custom route for the "News" page
+  createPage({
+    path: "/vijesti", // Set your desired custom route here
+    component: require.resolve("./src/pages/news.js"), // Path to your "news" page component
+  })
+
+  // Create a custom route for the "Training" page
+  createPage({
+    path: "/trening", // Set your desired custom route here
+    component: require.resolve("./src/pages/training.js"), // Path to your "training" page component
+  })
 }
 
 /**
