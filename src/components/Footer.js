@@ -1,5 +1,10 @@
 import React from "react"
+import { Link } from "gatsby"
 
 export default function Footer() {
-  return <div>© {new Date().getFullYear()} Judo Klub Sarajevo</div>
+  return (
+    <footer>
+      © {new Date().getFullYear()} <Link to="/">Judo Klub Sarajevo</Link>{" "}
+    </footer>
+  )
 }

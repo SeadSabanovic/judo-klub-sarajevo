@@ -1,0 +1,32 @@
+.training {
+  padding-top: var(--space-md);
+
+  &__header {
+    margin-bottom: var(--space-md);
+    font-weight: 600;
+
+    p {
+      margin-top: 24px;
+      span {
+        text-decoration: underline;
+        text-decoration-color: var(--color-primary);
+      }
+    }
+  }
+
+  &__trainings {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+
+    &__section {
+      border-bottom: 1px solid #f0f0f0;
+      padding-bottom: 24px;
+
+      p {
+        color: var(--color-primary);
+        font-weight: 600;
+      }
+    }
+  }
+}

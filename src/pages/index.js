@@ -1,43 +1,37 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
-
-import * as style from "../styles/modules/home.module.scss"
+import { StaticImage } from "gatsby-plugin-image"
 import video from "../assets/judopromo.mp4"
-import kano from "../assets/kano.jpg"
 import Button from "../components/Button"
 import NewsSlider from "../components/NewsSlider"
 import "swiper/css"
+import "../styles/pages/home.scss"
+import { motion } from "framer-motion"
 
 const Home = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMarkdownRemark.nodes.slice(0, 3)
 
-  /* if (posts.length === 0) {
-    return (
-      <Layout location={location} title={siteTitle}>
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
-      </Layout>
-    )
-  } */
-
   return (
-    <div className={style.home}>
-      <div className={style.home__video}>
+    <div className="home">
+      <div className="home__video">
         <video src={video} autoPlay playsInline loop muted></video>
       </div>
       <Layout location={location} title={siteTitle}>
-        <section className={style.home__section}>
-          <div className={style.home__section__title}>
+        <section className="home__section">
+          <div className="home__section__title">
             <h2>O Nama</h2>
+            <motion.h4
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, when: "beforeChildren" }}
+            >
+              私たちについて
+            </motion.h4>
           </div>
-          <div className={style.home__section__content}>
+          <div className="home__section__content">
             <p>
               Smješten u Sarajevu, nekoliko minuta hoda od hotela Novotel Judo
               klub Sarajevo pruža prvoklasnu obuku i treniranje džudoa za sve
@@ -56,14 +50,24 @@ const Home = ({ data, location }) => {
               za one koji žele prvi put probati džudo ili čak za iskusne
               džudiste koji su željni povratku na strunjače.
             </p>
+            <Button link="/o-nama" content="Saznaj Više" />
           </div>
         </section>
 
         {posts.length ? <NewsSlider posts={posts} /> : ""}
-        <ol>{}</ol>
 
-        <section className={style.home__section}>
-          <div className={style.home__section__content}>
+        <section className="home__section home__section--reverse">
+          <div className="home__section__title">
+            <h2>Judo</h2>
+            <motion.h4
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, when: "beforeChildren" }}
+            >
+              柔道
+            </motion.h4>
+          </div>
+          <div className="home__section__content">
             <p>
               Džudo je stvoren kao fizičko, mentalno i moralno obrazovanje u
               Japanu. Općenito se karakterizira kao moderna borilačka vještina.
@@ -88,34 +92,84 @@ const Home = ({ data, location }) => {
               dozvoljeni na džudo takmičenjima ili slobodnim treninzima
               (randori, 乱取り). Osoba koja se bavi džudom naziva se džudoka.
             </p>
-            <div className={style.home__section__content__kano}>
-              <img src={kano} alt="Kano Judo" />
-              <h4>Jigoro Kano</h4>
-              <p>'If there is effort, there is always accomplishment.'</p>
-            </div>
-          </div>
-          <div className={style.home__section__title}>
-            <h2>Judo</h2>
+            <Button link="/trening" content="Pridruži nam se" />
           </div>
         </section>
-        <section className={style.home__split}>
-          <div className={style.home__split__container}>
-            <h4>IMAŠ LI ŠTA JE POTREBNO?</h4>
-            <Button content="Pridruži nam se!" link="/trening" />
-            <img
-              className={style.home__split__container__bg}
-              src="https://images.pexels.com/photos/6253307/pexels-photo-6253307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
+
+        <section className="home__kano">
+          <StaticImage
+            className="home__kano__img"
+            src="../assets/kano.jpg"
+            alt="Kano Judo"
+            width={400}
+          />
+          <motion.div
+            className="home__kano__desc"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, when: "beforeChildren" }}
+          >
+            <h4>Jigoro Kano</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Recusandae earum quae autem quod ipsam similique sit, esse
+              adipisci aperiam numquam?
+            </p>
+          </motion.div>
+        </section>
+
+        <section className="home__section-sponsors">
+          <div className="home__section-sponsors__title">
+            <h2>Partneri</h2>
+            <motion.h4
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, when: "beforeChildren" }}
+            >
+              パートナー
+            </motion.h4>
+          </div>
+          <div className="home__section-sponsors__desc">
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Voluptatum, a iste vel adipisci impedit magni? Quos harum sint
+              voluptates velit?
+            </p>
+          </div>
+          <div className="home__section-sponsors__wrap">
+            <StaticImage
+              src="../assets/gama.webp"
+              alt="Gama AA Security Logo"
+              layout="fixed"
+              height={55}
               loading="lazy"
             />
-          </div>
-          <div className={style.home__split__container}>
-            <h4>Podrži klub</h4>
-            <Button content="Postani sponzor" link="/trening" />
-            <img
-              className={style.home__split__container__bg}
-              src="https://images.pexels.com/photos/2425464/pexels-photo-2425464.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-              alt=""
+            <StaticImage
+              src="../assets/sensu.webp"
+              alt="Sensu Boje i Lakovi Logo"
+              layout="fixed"
+              height={75}
+              loading="lazy"
+            />
+            <StaticImage
+              src="../assets/union.webp"
+              alt="Union Banka Logo"
+              layout="fixed"
+              height={55}
+              loading="lazy"
+            />
+            <StaticImage
+              src="../assets/kenzo.png"
+              alt="Kenzzo Logo"
+              layout="fixed"
+              height={75}
+              loading="lazy"
+            />
+            <StaticImage
+              src="../assets/avanti.webp"
+              alt="Avanti Auto Dijelovi Logo"
+              layout="fixed"
+              height={35}
               loading="lazy"
             />
           </div>
