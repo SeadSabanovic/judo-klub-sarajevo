@@ -4,6 +4,8 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import { Autoplay } from "swiper/modules"
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { motion } from "framer-motion"
+import SwiperNavigation from "./SwiperNavigation"
+import Button from "./Button"
 
 export default function NewsSlider(props) {
   const { posts } = props
@@ -15,6 +17,7 @@ export default function NewsSlider(props) {
         <motion.h4
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, when: "beforeChildren" }}
         >
           ニュース
         </motion.h4>
@@ -30,11 +33,12 @@ export default function NewsSlider(props) {
         spaceBetween={0}
         slidesPerView={1}
         grabCursor={true}
-        /* autoplay={{
+        autoHeight={true}
+        slideToClickedSlide={true}
+        autoplay={{
           delay: 4000,
           disableOnInteraction: false,
-        }} */
-        onSlideChange={() => console.log("slide change")}
+        }}
         modules={[Autoplay]}
       >
         {posts.map(post => {
@@ -65,6 +69,18 @@ export default function NewsSlider(props) {
             </SwiperSlide>
           )
         })}
+        <SwiperSlide>
+          <div className="news-slider__swiper__last">
+            <h3 className="news-slider__swiper__last__title">Saznajte Više</h3>
+            <p className="news-slider__swiper__last__desc">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
+              molestiae aut ea! Inventore, enim odio tempore perspiciatis
+              corporis reiciendis dolor?
+            </p>
+            <Button content="Vijesti" link="/vijesti" />
+          </div>
+        </SwiperSlide>
+        <SwiperNavigation />
       </Swiper>
     </div>
   )

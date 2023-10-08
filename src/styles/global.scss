@@ -315,7 +315,7 @@ footer {
   }
 
   &__item {
-    opacity: 0.1;
+    opacity: 0.2;
     display: flex;
     flex-direction: column;
     transition: all 0.2s;
@@ -347,6 +347,29 @@ footer {
 
     .swiper-slide-active {
       z-index: 1;
+    }
+
+    &__last {
+      padding: 24px;
+
+      &__title {
+        margin-bottom: 24px;
+      }
+
+      &__desc {
+        margin-bottom: 24px;
+      }
+    }
+  }
+
+  .swiper-navigation {
+    margin-top: 24px;
+    display: flex;
+    gap: 24px;
+
+    &__button {
+      cursor: pointer;
+      font-size: 2rem;
     }
   }
 }
