@@ -5,7 +5,6 @@ import { graphql } from "gatsby"
 import "../styles/pages/about.scss"
 
 const About = ({ data, location }) => {
-  console.log({ data })
   const siteTitle = data.site.siteMetadata?.title || `Title`
   return (
     <Layout location={location} title={siteTitle}>

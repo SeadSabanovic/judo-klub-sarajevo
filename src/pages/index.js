@@ -12,7 +12,7 @@ import { motion } from "framer-motion"
 
 const Home = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes.slice(0, 3)
+  const posts = data.allMarkdownRemark.nodes.slice(0, 5)
 
   return (
     <div className="home">
@@ -22,7 +22,7 @@ const Home = ({ data, location }) => {
       <Layout location={location} title={siteTitle}>
         <section className="home__section">
           <div className="home__section__title">
-            <h2>O Nama</h2>
+            <h2>Judo Klub Sarajevo</h2>
             <motion.h4
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}

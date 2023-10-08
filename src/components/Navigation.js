@@ -132,15 +132,14 @@ export default function Navigation() {
         <div className="navigation__links">
           {links.map(link => {
             return (
-              <motion.div whileHover={{ scale: 0.95 }} key={link.id}>
-                <Link
-                  className="navigation__links__link"
-                  to={link.href}
-                  activeClassName="navigation__links__link--active"
-                >
-                  {link.text}
-                </Link>
-              </motion.div>
+              <Link
+                key={link.id}
+                className="navigation__links__link"
+                to={link.href}
+                activeClassName="navigation__links__link--active"
+              >
+                {link.text}
+              </Link>
             )
           })}
           <motion.div

@@ -3,6 +3,7 @@ import Footer from "./Footer"
 import Navigation from "./Navigation"
 import Contact from "./Contact"
 import Scroll from "./Scroll"
+import Loader from "./Loader"
 
 const Layout = ({ location, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -10,6 +11,7 @@ const Layout = ({ location, children }) => {
 
   return (
     <div className="global-wrapper" data-is-root-path={isRootPath}>
+      <Loader />
       <Scroll></Scroll>
       <Navigation />
       <main>{children}</main>

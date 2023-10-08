@@ -1,6 +1,6 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-
+import "../styles/pages/post.scss"
 import Layout from "../components/Layout"
 import Seo from "../components/Seo"
 
@@ -9,7 +9,6 @@ const BlogPostTemplate = ({
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`
-
   return (
     <Layout location={location} title={siteTitle}>
       <article
@@ -25,8 +24,6 @@ const BlogPostTemplate = ({
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
-        <hr />
-        <footer></footer>
       </article>
     </Layout>
   )

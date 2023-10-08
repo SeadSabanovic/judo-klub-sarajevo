@@ -1,0 +1,18 @@
+.blog-post {
+  max-width: 700px;
+  margin: var(--space-md) auto 0;
+
+  header {
+    margin-bottom: var(--space-md);
+  }
+
+  section {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      margin-bottom: 24px;
+    }
+  }
+}
